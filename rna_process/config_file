@@ -1,0 +1,29 @@
+#maximum number of threads which should be used simultaneously. 
+#do not set this value higher than the number of cores installed
+#on the computer the script is running on
+max_cpus=40
+#"True" if aligning to a genome with gtf and known splicing files (cufflinks option)
+#"False" if aligning to a transcriptome (eXpress option)
+genomic=True
+#Location where compiled GSNAP indexes are stored
+gsnap_index_directory=/home/jschnable/rna_seq_stuff/gsnap_indexes
+#Name of the GSNAP index to use
+gsnap_index_name=maizev2
+#Path to the raw fasta file used to generate the index. 
+#(ignored if "genomic" is set to True)
+index_fasta_file=/home/jschnable/qteller_generic_test/gsnap_info/musa_cds_v1.fasta
+#Path to the splicing index file 
+#(ignored if genomic is set to false)
+splice_file=/home/jschnable/rna_seq_stuff/gsnap_indexes/maizev2-wgs-splice.iit
+#Location of the GTF annotation file for this genome 
+#(ignored if genomic is set to false)
+gtf_file=/home/jschnable/rna_seq_stuff/gsnap_indexes/maizev2-cannon2.gtf
+#Path to an expression_data_file
+#Formatted like this: 
+#dataset_name,sequence_file1.fastq,sequence_file2.fastq,sequence_fileN.fastq
+data_spreadsheet=/home/jschnable//qteller_generic_test/exp_ss.csv
+#absolute path to the read_stats.py file
+stats_script_loc=./
+keep_sam_alignment_file=False
+keep_sorted_bam_file=False
+

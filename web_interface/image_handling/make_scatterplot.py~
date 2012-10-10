@@ -1,0 +1,118 @@
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
+import sys
+
+db_file = 'qt4db'
+width = .7
+
+class qteller_db:
+    def __init__(self,database):
+        import sqlite3
+        self.conn = sqlite3.connect(database)
+    def stub2exp(self):
+        import sqlite3
+        results = {}
+        self.conn.row_factory = sqlite3.Row
+        c = self.conn.cursor()
+        c.execute("select * from data_sets")
+        for row in c:
+            results[row['stub_id']] = row['experiment_id']
+        return results
+    def gene_exp(self,gene):
+        import sqlite3
+        results = {}
+        self.conn.row_factory = sqlite3.Row
+        c = self.conn.cursor()
+        c.execute("select * from exp_table where gene=?",(gene,))
+        for row in c:
+            results[row['experiment_id']] = {'exp':row['exp_val'],'low':row['exp_low'],'high':row['exp_high'],'source':row['source_id'],'name':row['experiment_id']}
+        return results
+
+def group_by_source(exps):
+    sources = {}
+    for e in exps:
+        if not exps[e]['source'] in sources: sources[exps[e]['source']] = []
+        sources[exps[e]['source']].append(exps[e])
+    for x in sources:
+        sources[x].sort(key= lambda val: val['name'])
+    return sources
+
+#configuring matplotlib
+matplotlib.rcParams['xtick.major.size'] = 0
+matplotlib.rcParams['xtick.minor.size'] = 0
+matplotlib.rcParams['ytick.major.size'] = 0
+matplotlib.rcParams['ytick.minor.size'] = 0
+#matplotlib.rcParams['lines.linewidth'] = 3
+matplotlib.rcParams['patch.linewidth'] = 2
+matplotlib.rcParams['axes.linewidth'] = 2
+matplotlib.rcParams['legend.fancybox'] = 'True'
+matplotlib.rcParams['legend.shadow'] = 'True'
+matplotlib.rcParams['legend.fontsize'] = 'small'
+matplotlib.rcParams['legend.markerscale'] = .4
+#xtick.major.size
+#xtick.minor.size
+#ytick.major.size
+#ytick.minor.size
+
+mygenes = sys.argv[1].split(',')
+mygene1,mygene2 = mygenes[0],mygenes[1]
+mydb = qteller_db(db_file)
+s2e = mydb.stub2exp()
+myexp1 = mydb.gene_exp(mygene1)
+myexp2 = mydb.gene_exp(mygene2)
+if len(sys.argv) > 2:
+    include_vals = sys.argv[2].split(',')
+    t1,t2 = {},{}
+    for x in include_vals:
+        t1[s2e[x]] = myexp1[s2e[x]]
+        t2[s2e[x]] = myexp2[s2e[x]]
+    myexp1,myexp2 = t1,t2
+exp_by_source1 = group_by_source(myexp1)
+exp_by_source2 = group_by_source(myexp2)
+fig = plt.figure(figsize=(10,6),dpi=300)
+ax = fig.add_subplot('111')
+ind = 0
+colors = ['blue','red','green','yellow','purple','orange','cyan','pink']
+sources = list(exp_by_source1)
+sources.sort(key= lambda s: len(exp_by_source1[s]))
+sources.reverse()
+legend_colors = []
+legend_text = []
+xlabels = []
+maxy = 0
+maxx = 0
+for sind,s in enumerate(sources):
+    myx = []
+    myy = []
+    myname = []
+    for xind,x in enumerate(exp_by_source1[s]):
+    	myname.append(x['name'])
+    	myx.append(x['exp'])
+    	myy.append(exp_by_source2[s][xind]['exp'])
+        if myy[-1] > maxy: maxy = myy[-1]
+        if myx[-1] > maxx: maxx = myx[-1]
+#        print x['name'],exp_by_source2[s][xind]['name']
+        plt.text(myx[-1],myy[-1],x['name'],fontsize=10)
+    if sind < len(colors):
+        mycolor = colors[sind]
+    else:
+        mycolor = 'gray'
+#    print myx,myy
+    rects = ax.scatter(myx,myy,color=mycolor)
+    if mycolor != 'gray':
+        legend_text.append(s)
+        legend_colors.append(rects)
+#    ind = myind[-1] + 1
+#ax.legend( legend_colors,legend_text,bbox_to_anchor=(1.1,1.1))
+ax.set_xlabel('%s Expression (FPKM)' % mygene1)
+ax.set_ylabel('%s Expression (FPKM)' % mygene2)
+ax.set_xlim([0,maxx*1.15])
+ax.set_ylim([0,maxy*1.15])
+#ax.set_title('Tissue Specific Expression of %s' % mygene)
+fig.tight_layout()
+ax.legend(legend_colors,legend_text,loc='upper center',ncol=5)
+
+fig.savefig('./tmp/%s-%s.svg' % (mygene1,mygene2),dpi=300)
+fig.savefig('./tmp/%s-%s.png' % (mygene1,mygene2),dpi=300)
