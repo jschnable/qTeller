@@ -166,6 +166,7 @@ else:
     for x in fh:
         if x[0] == '#': continue
         y = x.strip().split('\t')
+        if len(y) < 2: continue
         if y[2] != 'gene': continue
         mydefs = def_parse(y[-1])
         if not args.gene_def_tag.lower() in mydefs:
