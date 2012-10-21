@@ -205,8 +205,10 @@ for x in datasets:
     proc.wait()
     sys.stderr.write("Complete")
     fh_results.close()
-    if len(datasets[x]) > 1:
-        os.remove('temp.fastq')
+
+    #if we created a temporary alignment file, delete it
+    if myopts['trim_reads'] == True or fastq_file == 'temp.fastq':
+        os.remove(fastq_file)
 
     #collect information on how many reads aligned to each sequence
     if myopts['stats_script_loc'] and os.path.exists(myopts['stats_script_loc']):
