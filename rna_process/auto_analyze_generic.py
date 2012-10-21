@@ -50,8 +50,7 @@ gsnap_dict = {
 #reads the options out of the specified configuration file
 def config_parse(fname):
     if not os.path.exists(fname):
-        general_log_file.write("Config file {0} does not exist.\nDying now.\n".format(fname))
-        1/0
+        sys.exit("Config file {0} does not exist.\nDying now.\n".format(fname))
     fh = open(fname)
     results = {}
     for x in fh:
@@ -65,8 +64,7 @@ def config_parse(fname):
 #figure out what data needs to be analyzed
 def data_ss_parse(fname):
     if not os.path.exists(fname):
-        general_log_file.write("Expression spreadsheet {0} does not exist.\nDying now.\n".format(fname))
-        1/0
+        sys.exit("Expression spreadsheet {0} does not exist.\nDying now.\n".format(fname))
     fh = open(fname)
     datasets = {}
     for x in fh:
@@ -80,14 +78,12 @@ def data_ss_parse(fname):
 
 def test_file(an_opt,myopts):
     if not an_opt in myopts or not os.path.exists(myopts[an_opt]):
-        general_log_file.write("{0} is not provided or points to an invalid file/directory. Dying now\n".format(an_opt))
-        1/0
+        sys.exit("{0} is not provided or points to an invalid file/directory. Dying now\n".format(an_opt))
 
 #sanity checks. Are all the files needed specified? Do they exist? That sort of thing.
 def test_opts(myopts):
     if not 'genomic' in myopts or not myopts['genomic'] in set(['True','False']):
-        general_log_file.write("You need to tell me if you are aligning to a transcriptome or a genome by setting \"genomic=True\" or \"genomic=False\" in the config file. Dying now.")
-        1/0
+        sys.exit("You need to tell me if you are aligning to a transcriptome or a genome by setting \"genomic=True\" or \"genomic=False\" in the config file. Dying now.")
     if not 'max_cpus' in myopts:
         general_log_file.write("Max_CPUs not specified. Attempting to determine manually...")
         import multiprocessing
@@ -101,8 +97,7 @@ def test_opts(myopts):
         try:
             int(myopts['max_cpus'])
         except:
-            general_log_file.write("The value you provided for max_cpus ({0}) isn't an integer (1,2,3,100,etc). Dying now.\n".format(myopts['max_cpus']))
-            1/0
+            sys.exit("The value you provided for max_cpus ({0}) isn't an integer (1,2,3,100,etc). Dying now.\n".format(myopts['max_cpus']))
     test_file('gsnap_index_directory',myopts)
     if myopts['genomic'] == 'True':
         test_file('splice_file',myopts)
@@ -110,20 +105,27 @@ def test_opts(myopts):
     elif myopts['genomic'] == 'False':
         test_file('index_fasta_file',myopts)
     test_file('data_spreadsheet',myopts)
-    
+    if not 'trim_reads' in myopts: myopts['trim_reads'] = False
+    if myopts['trim_reads'] == True:
+        if not 'qual_cut' in myopts: myopts['qual_cut'] = 20
+        #this is a very conservative default in case people run qTeller on
+        #data from old 32 bp sequencing runs
+        if not 'min_length' in myopts: myopts['min_length'] = 25
+        #3' adapter from TruSeq up to the start of the variable index region
+        if not 'adapter_seq' in myopts: myopts['adapter_seq'] = 'GATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
 
 import subprocess as sp
 import os,sys
 #file to track the progress of the analysis and report any problems
-general_log_file = open('auto_analyze_runtime.log','w',0)
+#general_log_file = open('auto_analyze_runtime.log','w',0)
 
 #user can provide a config file of their own if they want
 if len(sys.argv) > 1:
     myconfig_file = sys.argv[1]
-    general_log_file.write('Config file provided by user: {0}\n'.format(sys.argv[1]))
+    sys.stderr.write('Config file provided by user: {0}\n'.format(sys.argv[1]))
 else:
     myconfig_file = './config_file'
-    general_log_file.write("No config file provided. Using default: {0}\n".format(myconfig_file))
+    sys.stderr.write("No config file provided. Using default: {0}\n".format(myconfig_file))
 #parsing the variables specified in the config file
 myopts = config_parse(myconfig_file)
 #makes sure enough information was provided in the config file
@@ -131,13 +133,12 @@ test_opts(myopts)
 #create a list of datasets to be aligned
 datasets = data_ss_parse(myopts['data_spreadsheet'])
 #more logging
-general_log_file.write("Datasets to analyze:\n")
+sys.stderr.write("Datasets to analyze:\n")
 for d in datasets:
-    general_log_file.write("{0}: {1}\n".format(d,','.join(datasets[d])))
+    sys.stderr.write("{0}: {1}\n".format(d,','.join(datasets[d])))
     for x in datasets[d]:
         if not os.path.exists(x):
-            general_log_file.write("File {0} from dataset {1} couldn't be found. Dying now to save you from coming back to a crashed script hours from now.\n".format(x,d))
-            1/0
+            sys.exit("File {0} from dataset {1} couldn't be found. Dying now to save you from coming back to a crashed script hours from now.\n".format(x,d))
 
 #setting up the gsnap command that will be used for all alignments
 snaplist_base = ['gsnap']
@@ -174,6 +175,8 @@ for x in datasets:
     two_hits = x + ".bam"
     three_hits = x + "-sorted"
     log_file = x + ".log"
+    fh_results = open(one_hits,'w')
+    fh_log = open(log_file,'w')
 
     #we preserve the unique extensions of cufflinks and eXpress 
     if myopts['genomic'] == 'True':
@@ -181,18 +184,26 @@ for x in datasets:
     elif myopts['genomic'] == 'False':
         final_file = x + ".xprs"
     else:
-        general_log_file.write("Invalid choice for option \"genomic\": {0}\nValid options are: True and False.\nDying Now.".format(myopts['genomic']))
-        1/0
+        sys.exit("Invalid choice for option \"genomic\": {0}\nValid options are: True and False.\nDying Now.".format(myopts['genomic']))
+
+    #trim reads for adapters and low quality sequences if requested in options file
+    if myopts['trim_reads'] == True:
+        mystub = fastq_file.replace('.fastq','')
+        mytrimmed_fastq = mystub + "trimmed.fastq"
+        tfile = open(mytrimmed_fastq,'w')
+        trim_list = ['cutadapt','-q',myopts['qual_cut'],'-m',myopts['min_length'],'-a',myopts['adapter_seq'],fastq_file]
+        proc = sp.Popen(trim_list,stdout=tfile,stderr=fh_log)
+        proc.wait()
+        tfile.close()
+        fastq_file = mytrimmed_fastq
 
     #code to run the alignments
     snaplist = snaplist_base[:]
     snaplist.append(fastq_file)
-    fh_results = open(one_hits,'w')
-    fh_log = open(log_file,'w')
-    general_log_file.write("{0}: Aligning...".format(x))
+    sys.stderr.write("{0}: Aligning...".format(x))
     proc = sp.Popen(snaplist,stdout=fh_results,stderr=fh_log)
     proc.wait()
-    general_log_file.write("Complete")
+    sys.stderr.write("Complete")
     fh_results.close()
     if len(datasets[x]) > 1:
         os.remove('temp.fastq')
@@ -202,30 +213,30 @@ for x in datasets:
         proc = sp.Popen(['python',myopts['stats_script_loc'],one_hits],stdout=fh_log)
         proc.wait()
     else:
-        general_log_file.write("{0}: No location or invalid location for the stats script so no summary stats recorded in {1}. Continuing\n".format(x,log_file))
+        sys.stderr.write("{0}: No location or invalid location for the stats script so no summary stats recorded in {1}. Continuing\n".format(x,log_file))
     fh_log.close()
 
     #convert alignment formats 
     fh_results = open(two_hits,'w')
-    general_log_file.write(" Converting to BAM...")
+    sys.stderr.write(" Converting to BAM...")
     proc = sp.Popen(['samtools','view','-bS',one_hits],stdout=fh_results)
     proc.wait()
-    general_log_file.write("Complete")
+    sys.stderr.write("Complete ")
     fh_results.close()
     if myopts['genomic'] == 'True':
-        general_log_file.write("Sorting BAM file...")
+        sys.stderr.write("Sorting BAM file...")
         proc = sp.Popen(['samtools','sort',two_hits,three_hits])
         proc.wait()
-        general_log_file.write("Complete")
+        sys.stderr.write("Complete ")
         os.remove(two_hits)
     if myopts['keep_sam_alignment_file'] != 'True':
         os.remove(one_hits)
     else:
-        general_log_file.write("\nNot saving SAM file because keep_sam_aligmnet_file is not set to \"True\"\n")
+        sys.stderr.write("\nNot saving SAM file because keep_sam_aligmnet_file is not set to \"True\"\n")
 
     #quantify gene expression using either cufflinks or eXpress
     if myopts['genomic'] == 'True':
-        general_log_file.write("Using Cufflinks to quantify gene expression because reads were aligned to a genome...")
+        sys.stderr.write("Using Cufflinks to quantify gene expression because reads were aligned to a genome...")
         cf_list = ['cufflinks','-p',myopts['max_cpus'],'-u','--GTF',myopts['gtf_file'],three_hits+".bam"]
         proc = sp.Popen(cf_list)
         proc.wait()
@@ -233,14 +244,14 @@ for x in datasets:
         if myopts['keep_sorted_bam_file'] != 'True':
             os.remove(three_hits+".bam")
         else:
-            general_log_file.write("Not saving SAM file because keep_sorted_bam_file is not set to \"True\"\n")
+            sys.stderr.write("Not saving SAM file because keep_sorted_bam_file is not set to \"True\"\n")
     else:
-        general_log_file.write("Using eXpress to quantify gene expression because reads were aligned to a transcriptome...")
+        sys.stderr.write("Using eXpress to quantify gene expression because reads were aligned to a transcriptome...")
         exp_list = ['express',myopts['index_fasta_file'],two_hits]
         proc = sp.Popen(exp_list)
         proc.wait()
         os.rename('results.xprs',final_file)
         os.remove(two_hits)
     #more record keeping
-    general_log_file.write("Quantification complete! Analysis complete! Expression values saved at {0}. Moving on...\n".format(final_file))
+    sys.stderr.write("Quantification complete! Analysis complete! Expression values saved at {0}. Moving on...\n".format(final_file))
     
