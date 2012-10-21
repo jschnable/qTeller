@@ -106,7 +106,7 @@ def test_opts(myopts):
         test_file('index_fasta_file',myopts)
     test_file('data_spreadsheet',myopts)
     if not 'trim_reads' in myopts: myopts['trim_reads'] = False
-    else: myopts['trim_reads'] == True
+    else: myopts['trim_reads'] = True
     if myopts['trim_reads'] == True:
         if not 'qual_cut' in myopts: myopts['qual_cut'] = 20
         #this is a very conservative default in case people run qTeller on
@@ -114,7 +114,7 @@ def test_opts(myopts):
         if not 'min_length' in myopts: myopts['min_length'] = 25
         #3' adapter from TruSeq up to the start of the variable index region
         if not 'adapter_seq' in myopts: myopts['adapter_seq'] = 'GATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
-
+    return myopts
 import subprocess as sp
 import os,sys
 #file to track the progress of the analysis and report any problems
@@ -130,7 +130,7 @@ else:
 #parsing the variables specified in the config file
 myopts = config_parse(myconfig_file)
 #makes sure enough information was provided in the config file
-test_opts(myopts)
+myopts = test_opts(myopts)
 #create a list of datasets to be aligned
 datasets = data_ss_parse(myopts['data_spreadsheet'])
 #more logging
@@ -193,6 +193,7 @@ for x in datasets:
         mytrimmed_fastq = mystub + "trimmed.fastq"
         tfile = open(mytrimmed_fastq,'w')
         trim_list = ['cutadapt','-q',myopts['qual_cut'],'-m',myopts['min_length'],'-a',myopts['adapter_seq'],fastq_file]
+        sys.stderr.write("Now trimming {0}".format(x))
         proc = sp.Popen(trim_list,stdout=tfile,stderr=fh_log)
         proc.wait()
         tfile.close()
