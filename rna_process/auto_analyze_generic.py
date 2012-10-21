@@ -106,6 +106,7 @@ def test_opts(myopts):
         test_file('index_fasta_file',myopts)
     test_file('data_spreadsheet',myopts)
     if not 'trim_reads' in myopts: myopts['trim_reads'] = False
+    else: myopts['trim_reads'] == True
     if myopts['trim_reads'] == True:
         if not 'qual_cut' in myopts: myopts['qual_cut'] = 20
         #this is a very conservative default in case people run qTeller on
