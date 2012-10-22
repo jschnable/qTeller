@@ -244,7 +244,7 @@ for x in datasets:
         cf_list = ['cufflinks','-p',myopts['max_cpus'],'-u','--GTF',myopts['gtf_file'],three_hits+".bam"]
         proc = sp.Popen(cf_list)
         proc.wait()
-        os.rename('gene.fpkm_tracking',final_file)
+        os.rename('genes.fpkm_tracking',final_file)
         if myopts['keep_sorted_bam_file'] != 'True':
             os.remove(three_hits+".bam")
         else:
