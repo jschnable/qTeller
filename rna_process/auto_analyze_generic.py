@@ -194,7 +194,7 @@ for x in datasets:
         tfile = open(mytrimmed_fastq,'w')
         trim_list = ['cutadapt','-q',myopts['qual_cut'],'-m',myopts['min_length'],'-a',myopts['adapter_seq'],fastq_file]
         sys.stderr.write("Now trimming {0}".format(x))
-        proc = sp.Popen(map(str,trim_list)),stdout=tfile,stderr=fh_log)
+        proc = sp.Popen(map(str,trim_list),stdout=tfile,stderr=fh_log)
         proc.wait()
         tfile.close()
         fastq_file = mytrimmed_fastq
