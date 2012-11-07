@@ -190,13 +190,15 @@ for x in datasets:
     #trim reads for adapters and low quality sequences if requested in options file
     if myopts['trim_reads'] == True:
         mystub = fastq_file.replace('.fastq','')
-        mytrimmed_fastq = mystub + "trimmed.fastq"
+        mytrimmed_fastq = mystub + ".trimmed.fastq"
         tfile = open(mytrimmed_fastq,'w')
         trim_list = ['cutadapt','-q',myopts['qual_cut'],'-m',myopts['min_length'],'-a',myopts['adapter_seq'],fastq_file]
         sys.stderr.write("Now trimming {0}".format(x))
         proc = sp.Popen(map(str,trim_list),stdout=tfile,stderr=fh_log)
         proc.wait()
         tfile.close()
+        if fastq_file = "temp.fastq":
+            os.remove(fastq_file)
         fastq_file = mytrimmed_fastq
 
     #code to run the alignments
