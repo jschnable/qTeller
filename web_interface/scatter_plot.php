@@ -18,7 +18,7 @@ if (empty($xmax)) { $xmax = 0; }
 $all_info = implode("|",$myinfo);
 #$mygene2 = $_POST['name2'];
 #echo exec("echo \$MPLCONFIGDIR");
-putenv("MPLCONFIGDIR=\"/tmp/\"");
+putenv("MPLCONFIGDIR=/tmp/);
 #echo "<p>python image_handling/make_scatter.py $mygene1,$mygene2 </p>";
 #echo "python image_handling/make_scatterplot.py --gene1 $mygene1 --gene2 $mygene2 --exps \"$all_info\" --xmax $xmax --ymax $ymax";
 exec("python image_handling/make_scatterplot.py --gene1 $mygene1 --gene2 $mygene2 --exps \"$all_info\" --xmax $xmax --ymax $ymax");
