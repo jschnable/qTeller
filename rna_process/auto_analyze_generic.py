@@ -197,7 +197,7 @@ for x in datasets:
         proc = sp.Popen(map(str,trim_list),stdout=tfile,stderr=fh_log)
         proc.wait()
         tfile.close()
-        if fastq_file = "temp.fastq":
+        if fastq_file == "temp.fastq":
             os.remove(fastq_file)
         fastq_file = mytrimmed_fastq
 
