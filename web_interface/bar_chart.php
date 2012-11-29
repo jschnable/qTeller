@@ -19,7 +19,7 @@ if (array_key_exists("info",$_POST)) { $myinfo = $_POST["info"]; } else { $myinf
 <div id="datacontainer">
 <?php
 #echo exec("echo \$MPLCONFIGDIR");
-putenv("MPLCONFIGDIR=\"/tmp/\"");
+putenv("MPLCONFIGDIR=/tmp/);
 $all_info = implode("|",$myinfo);
 echo exec("python image_handling/make_bar_chart.py --gene $mygene --exps \"$all_info\"");
 #echo "<p>$mygene</p>";
