@@ -104,14 +104,14 @@ for x in fh:
         syn_data[myfh] = {}
         synfh = open(args.info_dir + "/" + myfh + ".syn")
         for line in synfh:
-            y = x.strip().split('\t')
+            y = line.strip().split('\t')
             if len(y) < 2: continue
             syn_data[myfh][y[0]] = y[1]
     elif mytype == 'Anno':
         anno_data[myfh] = {}
         annofh = open(args.info_dir + "/" + myfh + ".anno")
         for line in annofh:
-            y = x.strip().split('\t')
+            y = line.strip().split('\t')
             if len(y) < 2: continue
             anno_data[myfh][y[0]] = y[1].replace(';','').replace(',','').replace("'",'').replace('"','')
     conn.commit()
@@ -177,7 +177,6 @@ else:
         else:
             myname = mydefs[args.gene_def_tag.lower()]
             gene_list.append(["'" + myname + "'","'" + y[0] + "'",int(y[3]),int(y[4]),sdict[y[6]],1])
-
 for insert_vals in gene_list:
     mygene = insert_vals[0].replace("'",'')
     for x in key_list["anno"]:
