@@ -37,7 +37,7 @@ $info = array();
 
 <html>
 <body>
-<link rel="stylesheet" type="text/css" media="all" href="/qteller2/css/common.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/common.css" />
 <div id="mainContainer">
 <?php require('header.html'); ?>
 <div id="pageContents">
