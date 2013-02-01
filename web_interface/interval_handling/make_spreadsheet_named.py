@@ -11,7 +11,8 @@ parser.add_argument("--link",action="store_true")
 parser.add_argument("--included_vals")
 args = parser.parse_args()
 import sqlite3
-mygenes = args.names.strip().split('$')
+print args.names
+mygenes = args.names.strip().split('dummy')
 header.extend(args.included_vals.split(','))
 conn = sqlite3.connect(db_file)
 conn.row_factory = sqlite3.Row
@@ -31,35 +32,38 @@ if args.link:
 header2 = []
 for h in header:
     header2.append(h.replace(" ",'_'))
+print mygenes
 for gene in mygenes:
-	c = execute("select * from gene_names where gene_name=?",(gene,))
-	for row in c:
-		p_starts[myname] = int(row['start'])
-    	p_chrs[myname] = row['chromosome']
-    	if row['chromosome'] in set(['chrMt','chr0','chrPt']): continue
-    	p_dict[myname] = []
-    	for v in header:
-    		if not v in row:
-    			print v
-        	p_dict[myname].append(str(row[v]))
-    	p_dict[myname].append("http://qteller.com/%s/bar_chart.php?name=%s" % (mysite,myname))
-    	if args.link:
-        	link_list = ["http://genomevolution.org/CoGe/GEvo.pl?"]
-        	link_list.append("show_cns=1")
-        	link_list.append("autogo=1")
-        	link_list.append("apply_all=30000")
-        	link_list.append("accn1=%s;mask1=non-genic" % row["gene_name"])
-        	s_count = 1
-        	for s in syns:
-            	if row[s] and row[s] != "''":
-                	s_count += 1
-                	link_list.append("accn%i=%s;mask%i=non-genic" % (s_count,row[s],s_count))
-            	else: continue
-        	if s_count > 1:
-            	link_list.append("num_seqs=%i" % s_count)
-            	p_dict[myname].append(";".join(link_list))
-        	else:
-            	p_dict[myname].append('No Syntelogs')
+    print gene
+    c.execute("select * from gene_table where gene_name=?",(gene,))
+    for row in c:
+	myname = row['gene_name']
+        p_starts[myname] = int(row['start'])
+        p_chrs[myname] = row['chromosome']
+        if row['chromosome'] in set(['chrMt','chr0','chrPt']): continue
+        p_dict[myname] = []
+        for v in header:
+            if not v in row:
+                print v
+            p_dict[myname].append(str(row[v]))
+        p_dict[myname].append("http://qteller.com/%s/bar_chart.php?name=%s" % (mysite,myname))
+        if args.link:
+            link_list = ["http://genomevolution.org/CoGe/GEvo.pl?"]
+            link_list.append("show_cns=1")
+            link_list.append("autogo=1")
+            link_list.append("apply_all=30000")
+            link_list.append("accn1=%s;mask1=non-genic" % row["gene_name"])
+            s_count = 1
+            for s in syns:
+                if row[s] and row[s] != "''":
+                    s_count += 1
+                    link_list.append("accn%i=%s;mask%i=non-genic" % (s_count,row[s],s_count))
+                else: continue
+            if s_count > 1:
+                link_list.append("num_seqs=%i" % s_count)
+                p_dict[myname].append(";".join(link_list))
+            else:
+                p_dict[myname].append('No Syntelogs')
 header2.append("Visualize_Expression_Link")
 if args.link:
     header2.append("GEvo_Link")

@@ -9,7 +9,9 @@
 </head>
 <body>
 <?php
-$mynames = str_replace("\n","$",$_POST['gene_names']);
+#echo $_POST;
+$mynames = str_replace("\n","dummy",$_POST['gene_names']);
+$mynames = preg_replace('/\s+/','',$mynames);
 $myversion = $_POST['version'];
 $mystart = trim($_POST['start']);
 if (empty($mystart)) { $mystart=0; }

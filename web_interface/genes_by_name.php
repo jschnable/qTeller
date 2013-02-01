@@ -41,9 +41,9 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 <p>Links are to the publications in which different data sets were first published.</p>
 <form action="named_results.php" method="post">
 <p>Paste gene IDs here. One gene per row.</p>
-<TEXTAREA NAME=gene_names>
-_FG001 is a gene ID. FGT001 is a transcript. I know it's confusing but I don't make the rules.
+<TEXTAREA NAME=gene_names rows=25 cols=50 wrap=physical>
 </TEXTAREA>
+<br>
 <?php
 $all_vals = implode(",",$fun_array) . ',' .implode(",",$all_array);
 echo "<input type=\"checkbox\" name=\"info[]\" value=\"$all_vals\" /> <b>Just show me everything</b> <-- If you check this don't check any other boxes<br><br>";
