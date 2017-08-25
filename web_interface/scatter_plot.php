@@ -18,10 +18,10 @@ if (empty($xmax)) { $xmax = 0; }
 $all_info = implode("|",$myinfo);
 #$mygene2 = $_POST['name2'];
 #echo exec("echo \$MPLCONFIGDIR");
-putenv("MPLCONFIGDIR=/tmp/);
+putenv("MPLCONFIGDIR=/tmp/");
 #echo "<p>python image_handling/make_scatter.py $mygene1,$mygene2 </p>";
 #echo "python image_handling/make_scatterplot.py --gene1 $mygene1 --gene2 $mygene2 --exps \"$all_info\" --xmax $xmax --ymax $ymax";
-exec("python image_handling/make_scatterplot.py --gene1 $mygene1 --gene2 $mygene2 --exps \"$all_info\" --xmax $xmax --ymax $ymax");
+exec("scl enable python27 'python image_handling/make_scatterplot.py --gene1 $mygene1 --gene2 $mygene2 --exps \"$all_info\" --xmax $xmax --ymax $ymax'");
 echo "<i>Move your mouse over a dot to see details about that expression datapoint.</i><br>";
 require("./tmp/$mygene1-$mygene2-map.html");
 echo "<br>";

@@ -21,7 +21,7 @@ if (array_key_exists("info",$_POST)) { $myinfo = $_POST["info"]; } else { $myinf
 #echo exec("echo \$MPLCONFIGDIR");
 putenv("MPLCONFIGDIR=/tmp/");
 $all_info = implode("|",$myinfo);
-echo exec("python image_handling/make_bar_chart.py --gene $mygene --exps \"$all_info\"");
+echo exec("scl enable python27 'python image_handling/make_bar_chart.py --gene $mygene --exps \"$all_info\"'");
 #echo "<p>$mygene</p>";
 #echo "<p>$all_info</p>";
 echo "<p><i>Click image to enlarge. Move your mouse over a dot to see details about that expression datapoint.</i></p>";

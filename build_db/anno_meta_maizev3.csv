@@ -1,0 +1,67 @@
+File_handle,Data_id,Source,Type,Link,Description
+Anthers,Anthers,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,"Whole anther including pollen, harvested at anthesis from field grown B73."
+Developing_ear,Developing Ear,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Harvested 15 days before the ear emerged from field grown B73
+Embryo_25DAP,Embryo 25DAP,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Dissected developing embryos from field grown B73 plants.
+Endosperm_25DAP,Endosperm 25DAP,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Dissected developing endosperm from field grown B73 plants.
+Ovule2,Ovule2,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,"Mature ovules with stigma and style removed, harvested at anthesis from field grown B73."
+Pollen2,Pollen,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Harvested at anthesis from field grown B73 plants.
+Mature_tassel,Mature Tassel,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Harvested when the tassel emerged from the whorl in field grown B73.
+Seed_5DAP,Seed 5DAP,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Whole seeds harvested five days after pollination from field grown B73 plants.
+Seed_10DAP,Seed 10DAP,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Whole seeds harvested ten days after pollination from field grown B73 plants.
+Silk,Silk,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Mature silks harvested at the time of emergence from field grown B73 plants
+Developing_tassel,Developing Tassel,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Harvested 10 days before the tassel emerged from field grown B73
+Ear,Ear,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Cob harvested at the time of silk emergence from field grown B73 plants.
+Seedling_leaves_field,Seedling leaves field,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Pooled leaves collected from field grown B73 seedlings 20 days after planting
+Seedling_Leaves_gc,Seedling leaves grow chamber,Davidson 2011,Expression,http://dx.doi.org/10.3835/plantgenome2011.05.0015,Pooled leaves collected from growth chamber grown B73 seedlings 20 days after planting
+Bundle_sheath_cells,Bundle Sheath Cells,Li 2010,Expression,http://dx.doi.org/10.1038/ng.703,Microdissected bundle sheath cells harvested from the tip of leaf three from nine day old B73 seedlings grown in growth chambers under 12 hour days
+Developing_leaf,Developing Leaf,Li 2010,Expression,http://dx.doi.org/10.1038/ng.703,Tissue from the base of leaf three - one centimeter above the ligule -- harvested from nine day old B73 seedlings grown in growth chambers under 12 hour days
+Mature_leaf,Mature Leaf,Li 2010,Expression,http://dx.doi.org/10.1038/ng.703,Tissue from one centimeter below the tip of leaf three harvested from nine day old B73 seedlings grown in growth chambers under 12 hour days
+Mesophyll,Mesophyll Cells,Li 2010,Expression,http://dx.doi.org/10.1038/ng.703,Microdissected mesophyll cells harvested from the tip of leaf three from nine day old B73 seedlings grown in growth chambers under 12 hour days
+Pollen1,Pollen1,Chettoor 2014,Expression,http://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0414-2,Mechanically extracted from ovules dissected from B73 grown in a greenhouse under 16 hour days.
+Shoot_field1,Shoot_field1,Chettoor 2014,Expression,http://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0414-2,Ovule minus the embryo sac. These ovules were dissected from 11 AM to noon - lights came on at 6 AM -- from  B73 grown in a greenhouse under 16 hour days.
+Shoot_field2,Shoot_field2,Chettoor 2014,Expression,http://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0414-2,
+Shoot_field3,Shoot_field3,Chettoor 2014,Expression,http://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0414-2,Freshly shed pollen collected from field grown B73
+Seedling_Roots,Seedling Roots,Wang 2009,Expression,http://dx.doi.org/10.1105/tpc.109.065714,Tissue harvested from 14 day old B73 seedlings grown in growth chambers under 15 hour days
+Seedling_Shoots,Seedling Shoots,Wang 2009,Expression,http://dx.doi.org/10.1105/tpc.109.065714,Tissue harvested from 14 day old B73 seedlings grown in growth chambers under 15 hour days
+Embryo_14DAP,Embryo 14DAP,Waters 2011,Expression,http://dx.doi.org/10.1105/tpc.111.092668,Pooled embryos from at least five ears harvested from field grown B73 fourteen days after pollination.
+Endosperm_14DAP,Endosperm 14DAP,Waters 2011,Expression,http://dx.doi.org/10.1105/tpc.111.092668,Pooled endosperm from at least five ears harvested from field grown B73 fourteen days after pollination.
+Ovaries_1_DAP,Ovaries 1 DAP,Kakumanu 2012,Expression,http://dx.doi.org/10.1104/pp.112.200444,Ovaries from B73 one day after pollination. Grown in a greenhouse under well watered conditions.
+Ovaries_Drought_stressed,Ovaries Drought Stressed,Kakumanu 2012,Expression,http://dx.doi.org/10.1104/pp.112.200444,Ovaries from B73 one day after pollination. Grown in a greenhouse under drought stress conditions.
+Leaf_Meristems,Leaf Meristems,Kakumanu 2012,Expression,http://dx.doi.org/10.1104/pp.112.200444,B73 grown in a greenhouse under drought stress conditions.
+Leaf_Meristems_Drought_stressed,Leaf Meristems Drought Stressed,Kakumanu 2012,Expression,http://dx.doi.org/10.1104/pp.112.200444,B73 grown in a greenhouse under non stressed conditions
+Ear_primordia,Ear primordia,Bolduc 2012,Expression,http://dx.doi.org/10.1101/gad.193433.112,"Pools of 4-5 mm kn-e1 homozygous ear primordia from field grown B73 plants in Albany, CA"
+Leaf_primordia,Leaf primordia,Bolduc 2012,Expression,http://dx.doi.org/10.1101/gad.193433.112,"Pools of 7-8 mm wt ear primordia from field grown B73 plants in Albany, CA"
+Tassel_primordia,Tassel primordia ,Bolduc 2012,Expression,http://dx.doi.org/10.1101/gad.193433.112,Pooled inner leaves (1-2 mm by 7-8 mm tube) from 2-3 mm above the SAM. Harvested from 10 day old B73 seedlings homozygous for Kn1-N
+Shoot_apex,Shoot apex,Bolduc 2012,Expression,http://dx.doi.org/10.1101/gad.193433.112,Pooled inner leaves (1-2 mm by 7-8 mm tube) from 2-3 mm above the SAM. Harvested from 10 day old B73 seedlings heteryzgous for Kn1-N
+Bundle_sheath_cells2,Bundle Sheath Cells2,Chang 2012,Expression,http://dx.doi.org/10.1104/pp.112.203810,Bundle sheath cells were harvested in the morning from the mid section of second leaves from 9 day old maize seedlings of the White Crystal genotype grown in a greenhouse under natural sunlight 13 to 14 hour days.
+Mesophyll_Cells2,Mesophyll Cells2,Chang 2012,Expression,http://dx.doi.org/10.1104/pp.112.203810,Mesophyll protoplasts harvested in the morning from the mid section of second leaves from 9 day old maize seedlings of the White Crystal genotype grown in a greenhouse under natural sunlight 13 to 14 hour days.
+P6_lg1_1,P6_lg1_1,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,Mutant tissue from P6 leaf primordia (all cell layers). Repeat 1
+P6_lg1_2,P6_lg1_2,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,Mutant tissue from P6 leaf primordia (all cell layers). Repeat 2
+P6_lg1_3,P6_lg1_3,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,Mutant tissue from P6 leaf primordia (all cell layers). Repeat 3
+P6_Wt1,P6_wt1,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,Wild-type tissue from P6 leaf primordia (all cell layers). Repeat 1
+P6_Wt2,P6_wt2,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,Wild-type tissue from P6 leaf primordia (all cell layers). Repeat 2
+P6_Wt3,P6_wt3,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,Wild-type tissue from P6 leaf primordia (all cell layers). Repeat 3
+P7_blade1,P7_blade1,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia blade (all cell layers) Repeat 1
+P7_blade2,P7_blade2,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia blade (all cell layers) Repeat 2
+P7_blade3,P7_blade3,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia blade (all cell layers) Repeat 3
+P7_blade_L1_1,P7_blade_L1_1,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 Leaf primordia blade( only adaxial L1 tissue was captured) Repeat 1
+P7_blade_L1_2,P7_blade_L1_2,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 Leaf primordia blade( only adaxial L1 tissue was captured) Repeat 2
+P7_blade_L1_3,P7_blade_L1_3,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 Leaf primordia blade( only adaxial L1 tissue was captured) Repeat 3
+P7_ligule1,P7_ligule1,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia ligule (All cell layers) Repeat 1
+P7_ligule2,P7_ligule2,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia ligule (All cell layers) Repeat 2
+P7_ligule3,P7_ligule3,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia ligule (All cell layers) Repeat 3
+P7_ligule_L1_1,P7_ligule_L1_1,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia ligule (only adaxial L1 tissue was captured) Repeat 1
+P7_ligule_L1_2,P7_ligule_L1_2,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia ligule (only adaxial L1 tissue was captured) Repeat 2
+P7_ligule_L1_3,P7_ligule_L1_3,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia ligule (only adaxial L1 tissue was captured) Repeat 3
+P7_sheath1,P7_sheath1,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia sheath (all cell layers) Repeat 1
+P7_sheath2,P7_sheath2,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia sheath (all cell layers) Repeat 2
+P7_sheath3,P7_sheath3,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia sheath (all cell layers) Repeat 3
+P7_sheath_L1_1,P7_sheath_L1_1,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia sheath (only adaxial L1 tissue was captured) Repeat 1
+P7_sheath_L1_2,P7_sheath_L1_2,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia sheath (only adaxial L1 tissue was captured) Repeat 2
+P7_sheath_L1_3,P7_sheath_L1_3,Johnston,Expression,http://www.plantcell.org/content/26/12/4718.full,P7 leaf primordia sheath (only adaxial L1 tissue was captured) Repeat 3
+,,,,,Unknown
+,,,,,Unknown
+,,,,,Unknown
+,,,,,Unknown
+,,,,,Unknown
+,,,,,Unknown

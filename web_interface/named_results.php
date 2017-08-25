@@ -21,7 +21,7 @@ $mystart = str_replace(',','',$mystart);
 $mystop = str_replace(',','',$mystop);
 $mychr = $_POST['chr'];
 $myinclude = $_POST['info'];
-$mycommand = "python interval_handling/make_spreadsheet_named.py --names " . $mynames;
+$mycommand = "scl enable python27 'python interval_handling/make_spreadsheet_named.py --names " . $mynames . "'";
 if ($myversion == '2F') {
 	$mycommand = $mycommand . " --filtered ";
 	}

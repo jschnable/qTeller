@@ -18,7 +18,7 @@ $mystart = str_replace(',','',$mystart);
 $mystop = str_replace(',','',$mystop);
 $mychr = $_POST['chr'];
 $myinclude = $_POST['info'];
-$mycommand = "python interval_handling/make_spreadsheet.py --chr $mychr --start $mystart --stop $mystop";
+$mycommand = "scl enable python27 'python interval_handling/make_spreadsheet.py --chr $mychr --start $mystart --stop $mystop'";
 if ($myversion == '2F') {
 	$mycommand = $mycommand . " --filtered ";
 	}

@@ -1,0 +1,18 @@
+# IDE
+.idea/
+
+# Gff files
+*.gff
+*.gff3
+
+# DB files
+qt4db
+qt4dbOLD
+
+
+# Tracking files
+*.fpkm_tracking
+
+
+# Other
+*tmp*

@@ -4,9 +4,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 import argparse
+import os
 
 db_file = 'qt4db'
 width = .7
+current_dir = os.path.dirname(os.path.abspath(__file__))
+web_interface_dir = '/'.join(current_dir.split('/')[:-1])
+
 
 class qteller_db:
     def __init__(self,database):
@@ -177,9 +181,9 @@ print ax2.set_xlim()
 
 ax.legend(legend_colors,legend_text,loc='upper center',ncol=5)
 ax2.legend(legend_colors,legend_text,loc='upper center',ncol=5)
-fig.savefig('./tmp/%s-%s.svg' % (mygene1,mygene2),dpi=300)
-fig.savefig('./tmp/%s-%s.png' % (mygene1,mygene2),dpi=300)
-fig2.savefig('./tmp/%s-%s-front.png' % (mygene1,mygene2),dpi=80)
+fig.savefig(('./tmp/%s-%s.svg' % (mygene1,mygene2)),dpi=300)
+fig.savefig(('./tmp/%s-%s.png' % (mygene1,mygene2)),dpi=300)
+fig2.savefig(('./tmp/%s-%s-front.png' % (mygene1,mygene2)),dpi=80)
 points = ax2.transData.transform(zip(myx2,myy2))
 xcoords,ycoords = [],[]
 for p1,p2 in points:
@@ -187,7 +191,7 @@ for p1,p2 in points:
 	ycoords.append(p2)
 image_height = fig2.get_figheight()*80
 image_width = fig2.get_figwidth()*80
-fh = open('./tmp/%s-%s-map.html' % (mygene1,mygene2),'w')
+fh = open(('./tmp/%s-%s-map.html' % (mygene1,mygene2)),'w')
 fh.write('''
 <SCRIPT>
 function mouseover(myname,mysource,mydesc,myx,xlow,xhigh,myy,ylow,yhigh) {
