@@ -41,8 +41,7 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 <p>Links are to the publications in which different data sets were first published.</p>
 <form action="results.php" method="post">
 Genome Version: <select name='version'>
-<option value='2F'>B73_refgen2 (filtered gene set)</option>
-<option value='2W'>B73_refgen2 (working gene set)</option>
+<option value='2F'>B73_refgen4 (filtered gene set)</option>
 </select><br>
 <i>To generate a spreadsheet of expression for all the genes in the genome select "All Chromosomes" and leave start position and end position blank.</i>
 Chromosome: <select name='chr'>

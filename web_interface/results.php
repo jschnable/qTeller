@@ -18,16 +18,18 @@ $mystart = str_replace(',','',$mystart);
 $mystop = str_replace(',','',$mystop);
 $mychr = $_POST['chr'];
 $myinclude = $_POST['info'];
-$mycommand = "scl enable python27 'python interval_handling/make_spreadsheet.py --chr $mychr --start $mystart --stop $mystop'";
+$mycommand = "scl enable python27 'python interval_handling/make_spreadsheet.py --chr $mychr --start $mystart --stop $mystop";
 if ($myversion == '2F') {
 	$mycommand = $mycommand . " --filtered ";
 	}
-if ($_POST['link'] == 'gevo') {
+/*if ($_POST['link'] == 'gevo') {
 	$mycommand = $mycommand . " --link" ;
 	}
-$mycommand = $mycommand . " --included_vals " . implode(",", $myinclude);
+*/
+$mycommand = $mycommand . " --included_vals " . implode(",", $myinclude) . "'";
+
 exec($mycommand);
-#echo $mycommand;
+echo $mycommand;
 echo "<a href=\"tmp/$mychr.$mystart.$mystop.html\">View results in your browser</a><br>";
 echo "<a href=\"tmp/$mychr.$mystart.$mystop.csv\">Download Results as a .csv spreadsheet</a>";
 ?>
