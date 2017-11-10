@@ -92,7 +92,7 @@ once configured, you can install PIP modules into Python2.7 like this:
 $ scl enable python27 'pip install -r requirements.txt'
 ```
 
-**NOTE**: if your username doesn't require root to install software, then `LD_LIBRARY_PATH` and `PATH` is set up for you automatically by `scl`.  Also keep in mind that using SCL outside a shell (e.g., cronjobs) [isn't quite straightforward](http://stackoverflow.com/questions/16631461/scl-enable-python27-bash).  Also, using `virtualenv` [poses a challenge as well](http://digiactive.com.au/blog/2013/12/28/setting-up-python-2-dot-7-on-centos-6-dot-4-the-really-easy-way/).
+**NOTE**: if your username doesn't require root to install software, then `LD_LIBRARY_PATH` and `PATH` is set up for you automatically by `scl`.  Also keep in mind that using SCL outside a shell (e.g., cronjobs) [isn't quite straightforward](http://stackoverflow.com/questions/16631461/scl-enable-python27-bash).  Also, using `virtualenv` poses a challenge as well.
 
 
 ### Additional Instructions
