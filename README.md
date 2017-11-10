@@ -107,14 +107,27 @@ See [Adding new data](adding-new-data) on final steps for generating the DB.
 ## Adding new data ##
 
 The qTeller database generation script requires the following 3 files:
-  1. fpkm_tracking files
-    * If it doesn't exist already, create the **build_db/fpkm_tracking** directory:
-      `mkdir build_db/fpkm_tracking`
-    * Drop your fpkm_tracking files in the **build_db/fpkm_tracking** directory. They must end with the `.fpkm_tracking` file extension, or they will be ignored.
-  2. Gff file
-    * Download a GFF file for your desired genome.
-  3. Metadata
-    * Create a metadata file in CSV format. Here is an [example](build_db/anno_meta_maizev4.csv).
-    * **NOTE:** The *File_handle* column specifies the name of the fpkm tracking file to load **(minus the .fpkm_tracking file extension)**
+  1. FPKM_TRACKING files
+      * If it doesn't exist already, create the **build_db/fpkm_tracking** directory:
+      `$ mkdir build_db/fpkm_tracking`
+      * Drop your fpkm_tracking files in the **build_db/fpkm_tracking** directory. They must end with the **.fpkm_tracking** file extension.
+  2. GFF file
+      * Download a GFF file for your desired genome and place it in the [build_db](/build_db) directory.
+  3. CSV file
+      * Create a metadata file in CSV format so the script knows how to interpret the fpkm_tracking files. Here is an [example](build_db/anno_meta_maizev4.csv).
+      * **NOTE:** The *File_handle* column specifies the name of the fpkm tracking file to load **(minus the .fpkm_tracking file extension)**
     
-Assuming you have the required files, you can create the SQLite DB using the following command:     
+Assuming you have the required files, you can create the SQLite DB using the following command: 
+
+```
+$ cd build_db
+$ scl enable python27 'python build_qt_db.py <METADATA.CSV> --gff_file <GFF.gff3> --info_dir ./fpkm_tracking' # creates qt4db
+```
+
+where <METADATA.CSV> is the CSV file (3), <GFF.gff3> is the GFF file (2), and fpkm_tracking is the directory where the FPKM_TRACKING files are kept (1) as described above. This will create a `qt4db` SQLite file. Finally, the last step is to move this file into the [web_interface](/web_interface) directory:
+
+```
+$ mv qt4db ../web_interface/
+```
+
+You should now be able to access qTeller through your browser.
