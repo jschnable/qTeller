@@ -125,7 +125,9 @@ $ cd build_db
 $ scl enable python27 'python build_qt_db.py <METADATA.CSV> --gff_file <GFF.gff3> --info_dir ./fpkm_tracking' # creates qt4db
 ```
 
-where <METADATA.CSV> is the CSV file (3), <GFF.gff3> is the GFF file (2), and fpkm_tracking is the directory where the FPKM_TRACKING files are kept (1) as described above. This will create a `qt4db` SQLite file. Finally, the last step is to move this file into the [web_interface](/web_interface) directory:
+where <METADATA.CSV> is the CSV file (3), <GFF.gff3> is the GFF file (2), and fpkm_tracking is the directory where the FPKM_TRACKING files are kept (1) as described above. This will create a `qt4db` SQLite file. Fun fact: you can use the [SQLite Viewer](http://inloop.github.io/sqlite-viewer/) to easily look inside the DB and experiment with queries.
+
+Finally, the last step is to move the generated `qt4db` file into the [web_interface](/web_interface) directory:
 
 ```
 $ mv qt4db ../web_interface/
