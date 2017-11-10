@@ -50,13 +50,14 @@ For username / password details, please contact [Carson Andorf](mailto:carson.an
 * **NOTE**: The host VM has Python 2.6.6 installed by default, and this should not be removed! See [Python](#python) for details.
 
 #### Apache Web Server Version 2.2.15
-* No untypical customization is needed. See [an example](https://support.rackspace.com/how-to/centos-6-apache-and-php-install/) of installing Apache on CentOS 6.
-* For an example of a working `httpd.conf` file, please consult `/etc/httpd/conf/httpd.conf` on the [VM](virtual-machine).
+* No untypical customization is needed.
 
 
 ## Installation ##
 
 ### Apache / PHP
+See [an example](https://support.rackspace.com/how-to/centos-6-apache-and-php-install/) of installing Apache on CentOS 6.
+* For an example of a working `httpd.conf` file, please consult `/etc/httpd/conf/httpd.conf` on the [VM](#virtual-machine).
 
 ### Python
 
@@ -102,7 +103,7 @@ Upon successful installation of Python, PHP, and Apache, you can `git clone` thi
 DocumentRoot "/var/www/html/qTeller/web_interface"
 ```
 
-See [Adding new data](adding-new-data) on final steps for generating the DB.
+See [Adding new data](#adding-new-data) on final steps for generating the DB.
 
 ## Adding new data ##
 
