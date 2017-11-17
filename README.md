@@ -17,7 +17,7 @@ For an examples of MaizeGDB's qTeller web interfaces visit
 
 ## Virtual Machine ##
 
-The MaizeGDB qTeller VM can be found under MaizeGDB's vSphere:
+The MaizeGDB qTeller VM (qteller2) can be found under MaizeGDB's vSphere resource pool "Dev" within datacenter blade3.usda.iastate.edu:
 
 ```
 blade3.usda.iastate.edu
@@ -125,7 +125,7 @@ $ cd build_db
 $ scl enable python27 'python build_qt_db.py <METADATA.CSV> --gff_file <GFF.gff3> --info_dir ./fpkm_tracking' # creates qt4db
 ```
 
-where <METADATA.CSV> is the CSV file (3), <GFF.gff3> is the GFF file (2), and fpkm_tracking is the directory where the FPKM_TRACKING files are kept (1) as described above. This will create a `qt4db` SQLite file. 
+where <METADATA.CSV> is the CSV file (3), <GFF.gff3> is the GFF file (2), and fpkm_tracking is the directory where the FPKM_TRACKING files are kept (1) as described above. This will create a `qt4db` SQLite file.
 
 * *Fun fact:* you can use the [SQLite Viewer](http://inloop.github.io/sqlite-viewer/) to easily look inside the DB and experiment with queries.
 
