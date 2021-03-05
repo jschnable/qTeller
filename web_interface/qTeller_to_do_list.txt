@@ -1,0 +1,161 @@
+https://github.com/Maize-Genetics-and-Genomics-Database/qTeller
+
+1)   Strip all maizegdb-specific stuff from the php/html files (Maggie);
+
+2)   Clean up scripts (including the css file); (Maggie or Shatabdi)
+
+3)   Think about how to automate reformatting the html files to be more plug-n-play; (John/Shatabdi/Carson)--may just remove this option?
+
+4)   Think about how to automate the multigenome indexing for the dropdown; (Shatabdi/Carson)
+
+6)   Make the php files compatible with PHP7 (John); https://www.php.net/manual/en/migration70.incompatible.php; https://github.com/gisostallenberg/php-to-7-aid; https://github.com/Alexia/php7mar; tutorial of latter: https://linuxhostsupport.com/blog/how-to-check-if-your-application-is-compatible-with-php-7/
+
+8)   How to containerize the python stuff and have the php stuff talk to it—one thing to keep in mind is that HPCs require running “singularity” as a command instead of “docker”; will need to keep that in mind when formatting the php’s (John)-->try to convert to python3 then make a conda environment or pip; converted the multigenome py files; need to convert their phps to call the correct py; need to test where php and sqlite are; ceres? docker pull nouchka/sqlite3; also in conda: conda install -c anaconda sqlite 
+
+9)   Make build accept .tsv and .sf files as inputs (Maggie)-->won't work since they calculate based on transcript; maybe suggest making a txt file of gene/averaged TPM and make that an input in the build code
+
+
+me:
+1)   Strip all maizegdb-specific stuff from the php/html files (Maggie);
+	a)homepage DONE
+	b)genes in an interval page DONE
+	c)genes by name page DONE
+	d)visualize expression page DONE
+	e) interval handling DONE
+	f) header.html DONE
+	g) buildb_codes DONE
+	h) image handling DONE
+	f) all the javascript stuff that includes the jira
+->a bunch of stuff on server that has the javascript stuff
+->change qt5db to singledb DONE
+->change protein_gene_v5db to proteindb DONE
+->change qtnamdb to multidb DONE
+->make build_db and web_interface separate directories; ignore rna_process
+Things a user must change manually:
+	-tissue selection choices in Protein_generate_figures.php
+	-chromosomes in Genes in an Interval for
+		index_singlegenome.php
+		index_multigenome.php
+	-genome names in in Genes in an Interval for index_multigenome.php
+-->note: shouldn't tissue selection choices be the same as for genes in an interval, etc?
+-->make links to images dynamic and not hard-coded?
+-->No Docker; convert to python3
+-->find refs in paper
+-->convert python2 to python3? https://docs.python.org/3/library/2to3.html
+				https://www.pythonconverter.com/
+-->python requirements (can be installed via conda?) https://github.com/Maize-Genetics-and-Genomics-Database/qTeller/blob/master/requirements.txt
+-->for txt file fpkm/tpm inputs: cuff_parse change to txt_parse in file and change expr_parse to cuff_parse in file and make tracking file grep with gene ID and FPKM (not low or high) and change the below from
+
+   if mytype == 'Expression':
+        exp_data[myfh] = ''
+        if os.path.exists(args.info_dir + "/" + myfh + ".fpkm_tracking_1"):
+            gene_exp = cuff_parse(args.info_dir + "/" + myfh + ".fpkm_tracking_1")
+        elif os.path.exists(args.info_dir + "/" + myfh + ".xprs"):
+            gene_exp = expr_parse(args.info_dir + "/" + myfh + ".xprs")
+
+to
+
+   if mytype == 'Expression':
+        exp_data[myfh] = ''
+        if os.path.exists(args.info_dir + "/" + myfh + ".fpkm_tracking_1"):
+            gene_exp = cuff_parse(args.info_dir + "/" + myfh + ".fpkm_tracking_1")
+        elif os.path.exists(args.info_dir + "/" + myfh + ".txt"):
+            gene_exp = txt_parse(args.info_dir + "/" + myfh + ".txt")
+
+
+2)   Clean up scripts (including the css file); (Maggie or Shatabdi)
+9)   Make build accept .tsv and .sf files as inputs (Maggie)->NOTE: may not be able to do plug and play for this since it's transcript-based, not gene-based; just suggest people make it into a txt file with gene ID (averaging transcript data into gene) followed by TPM
+Classical qTeller link is broken; need to edit this on maizegdb website (Maggie) 
+
+Ceres test python3 for qteller:
+
+ml miniconda/3.6
+conda create --name qteller
+
+conda create --prefix /lustre/project/maizegdb/MW_MAPPING/qteller/qteller
+
+source activate /lustre/project/maizegdb/MW_MAPPING/qteller/qteller
+
+
+cd
+mv .conda /lustre/project/maizegdb/MW_MAPPING
+ln -s /lustre/project/maizegdb/MW_MAPPING/.conda .conda
+cd /lustre/project/maizegdb/MW_MAPPING
+chgrp -R proj-maizegdb /project/maizegdb/MW_MAPPING/.conda
+
+conda install -c anaconda sqlite
+conda install --file qteller_packagelist.txt
+
+qteller_packagelist.txt:
+Babel
+cycler
+docutils
+functools32
+Jinja2
+MarkupSafe
+matplotlib
+nose
+numpy
+Pygments
+pyparsing
+python-dateutil
+pytz
+simplejson
+six
+Sphinx
+SQLAlchemy
+subprocess32
+virtualenv
+Werkzeug
+
+local install on mac:
+
+cd qTeller_files_for_container_code_generic--no_maizegdb_references
+conda create --name qteller
+
+conda activate qteller
+
+
+#conda install -c anaconda sqlite (comes with miniconda for mac)
+conda install --file qteller_packagelist_mac.txt
+
+qteller_packagelist_mac.txt:
+Babel
+cycler
+docutils
+functools32
+Jinja2
+MarkupSafe
+matplotlib
+nose
+numpy
+Pygments
+pyparsing
+python-dateutil
+pytz
+simplejson
+Sphinx
+SQLAlchemy
+subprocess32
+virtualenv
+Werkzeug
+
+multigenome:
+
+#!/bin/bash
+
+for sample in *.fpkm_tracking
+        do
+                echo $sample
+                describer=$(echo ${sample} | sed 's/.fpkm_tracking//')
+                echo $describer
+
+cat ${sample} | grep -E "Zm00001eb|Zm00018ab|Zm00040ab|Zm00023ab|Zm00036ab|Zm00030ab" > ${describer}_multigenome.txt
+
+done
+
+python python3_converted/multigenome_build_qt_db_python3.py multigenome_metadata.csv --bed_file multigenome_merged_IDs.bed --info_dir ./multigenome_fpkm --dbname multidb
+
+
+
+
