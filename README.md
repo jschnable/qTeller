@@ -1,7 +1,7 @@
 qTeller
 =======
 
-The MaizeGDB Python 3 update of James Schnable's RNA-seq processing pipeline and modular web interface
+The MaizeGDB Python 3 version of James Schnable's RNA-seq processing pipeline and modular web interface
 
 For an examples of MaizeGDB's qTeller web interfaces visit 
 <a href="https://qteller.maizegdb.org/">https://qteller.maizegdb.org/</a>
@@ -10,9 +10,9 @@ For an examples of MaizeGDB's qTeller web interfaces visit
 
 | Directory Name   | Description |
 |------------------|:---------------------:|
-| [build_db](/qteller/build_db) | Scripts for constructing the SQLite DB|
-| [web_interface](/qteller/web_interface) | Public facing files that are served by the Apache Server.|
-| [qteller_python2.7](/qteller/qteller_python2.7) | Old MaizeGDB Python 2.7 instance.|
+| [build_db](/build_db) | Scripts for constructing the SQLite DB.|
+| [web_interface](/web_interface) | Public facing files that are served by the Apache Server.|
+| [qteller_python2.7](/qteller_python2.7) | MaizeGDB Python 2.7 instance. This is the current public MaizeGDB qTeller instance.|
 
 
 ### Access
