@@ -33,8 +33,7 @@ For username / password details, please contact [Carson Andorf](mailto:carson.an
 ## Installation ##
 
 ### Apache / PHP
-See [an example](https://support.rackspace.com/how-to/centos-6-apache-and-php-install/) of installing Apache on CentOS 8.
-* For an example of a working `httpd.conf` file, please consult `/etc/httpd/conf/httpd.conf` on the [VM](#virtual-machine).
+See [an example](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-centos-8) of installing Apache on CentOS 8.
 
 ### Python
 
