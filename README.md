@@ -57,6 +57,16 @@ DocumentRoot "/var/www/html/qTeller/web_interface"
 
 See [Adding new data](#adding-new-data) on final steps for generating the DB.
 
+
+
+### Special instructions for "Genes in an Interval" php files:
+
+(1) Drop-down menu changes for chromosome IDs must be manually edited in index_singlegenome.php, index_multigenome.php, and Protein_index.php files. These files must be edited in each to reflect the chromosome IDs of the target genome(s). For instance, maize has ten chromosomes with the nomenclature chr1, chr2, etc; Sorghum also has ten chromosomes, but the chromosome nomenclature is Chr01, Chr02, etc. The index*.php files must be edited to reflect your target genome's chromosome information:
+
+<img width="470" alt="php_dropdowns" src="https://user-images.githubusercontent.com/38228323/111347517-4ac59a80-864d-11eb-852f-6510a9374daa.png">
+
+(2) For index_multigenome.php only, the Genome Version drop-down menu must be edited to reflect the genomes from the [multi-genome bed file](qteller/build_db/test_multigenome_NAM_merged_IDs.bed). Note that <option value= for the Genome Version dropdown menu in the php file corresponds to the genome ID listed in Column 5 of the bed file. [To see more in-depth examples of file formatting, click here](File_and_php_code_examples.pdf).
+
 ## Adding new data ##
 
 The qTeller database generation script requires the following 3 files:
@@ -67,7 +77,7 @@ The qTeller database generation script requires the following 3 files:
   2. GFF or bed file
       * Download a GFF file for your desired genome and place it in the [build_db](/qteller/build_db) directory. Alternately, a bed file can be used, where the gene model ID is in column 4. A bed file is REQUIRED for multi-genome qTeller; the gene model ID is in column 4, and the genome ID is in column 5. Here is an [example](qteller/build_db/test_multigenome_NAM_merged_IDs.bed).
   3. CSV file
-      * Create a metadata file in CSV format so the script knows how to interpret the fpkm_tracking files. Here is an [example](qteller/build_db/test_singlegenome_metadata.csv).
+      * Create a metadata file in CSV format so the script knows how to interpret the fpkm_tracking files. Here is an [example](/build_db/test_singlegenome_metadata.csv).
       * **NOTE:** The *File_handle* column specifies the name of the abundance file to load **(minus the .fpkm_tracking or .txt file extension)**
     
 Assuming you have the required files, you can create the SQLite DB for single-genome and/or protein abundance data using the following command: 
@@ -85,6 +95,8 @@ To create the SQLite DB for multi-genome data using the following command:
 $ cd build_db
 $ python 'multigenome_build_qt_db.py <METADATA.CSV> --gff_file <GFF.gff3> --info_dir ./fpkm_tracking' # creates multidb
 ```
+
+[To see more in-depth examples of file formatting, click here](File_and_php_code_examples.pdf).
 
 * *Fun fact:* you can use the [SQLite Viewer](http://inloop.github.io/sqlite-viewer/) to easily look inside the DB and experiment with queries.
 
