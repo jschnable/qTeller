@@ -84,23 +84,38 @@ Assuming you have the required files, you can create the SQLite DB for single-ge
 
 ```
 $ cd build_db
-$ python 'build_qt_db_gene_protein.py <METADATA.CSV> --gff_file <GFF.gff3> --info_dir ./abundance' # creates qt5db
+$ python multigenome_build_qt_db.py <METADATA.CSV> --bed_file <BED.bed> --info_dir ./<abundance? # creates userdb
 ```
 
-where <METADATA.CSV> is the CSV file (3), <GFF.gff3> is the GFF file (2), and fpkm_tracking is the directory where the FPKM_TRACKING files are kept (1) as described above. This will create a `singledb` SQLite file.
+where <METADATA.CSV> is the CSV file (3), <GFF.gff3> is the GFF file (2), and abundance is the directory where the abundance files are kept (1) as described above. This will create a `userdb` SQLite file.
 
-To create the SQLite DB for multi-genome data using the following command: 
+
+To build the SQLite DB for single-genome data (with no protein abundances) from the included test data, run this command:
 
 ```
 $ cd build_db
-$ python 'multigenome_build_qt_db.py <METADATA.CSV> --gff_file <GFF.gff3> --info_dir ./fpkm_tracking' # creates multidb
+$ python build_qt_db_gene_protein.py test_singlegenome_metadata.csv --gff_file <GFF.gff3> --info_dir ./test_singlegenome_fpkm # creates singledb
+```
+
+To build the SQLite DB for single-genome data with both RNA and protein abundances from the included test data, run this command:
+
+```
+$ cd build_db
+$ python build_qt_db_gene_protein.py test_singlegenome_metadata.csv --gff_file <GFF.gff3> --info_dir ./test_protein_abundance # creates proteindb
+```
+
+To create the SQLite DB for multi-genome data from the included test data, run this command: 
+
+```
+$ cd build_db
+$ python multigenome_build_qt_db.py test_multigenome_metadata.csv --bed_file test_multigenome_NAM_merged_IDs.bed --info_dir ./test_multigenome_fpkm # creates multidb
 ```
 
 [To see more in-depth examples of file formatting, click here](File_and_php_code_examples.pdf).
 
 * *Fun fact:* you can use the [SQLite Viewer](http://inloop.github.io/sqlite-viewer/) to easily look inside the DB and experiment with queries.
 
-Finally, the last step is to move the generated `singledb` or `multidb` file into the [web_interface](/qteller/web_interface) directory:
+Finally, the last step is to move the generated `singledb`, `proteindb`, or `multidb` file into the [web_interface](/qteller/web_interface) directory:
 
 ```
 $ mv singledb ../web_interface/
