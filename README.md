@@ -8,6 +8,14 @@ For an examples of MaizeGDB's qTeller web interfaces visit
 
 ## Overview ##
 
+| qTeller data types   | Description |
+|------------------|:---------------------:|
+| Genes in an Interval | Select a chromosome and coordinate interval of interest for a given genome to retrieve RNA/protein abundances.|
+| Genes by Name | Paste a list of gene models of interest to retrieve RNA/protein abundances.|
+| Visualize Expression | Visualize to retrieve RNA/protein abundances for a single gene as a bar chart, or compare abundances for two genes in a scatterplot.|
+
+## Directories ##
+
 | Directory Name   | Description |
 |------------------|:---------------------:|
 | [build_db](/build_db) | Scripts for constructing the SQLite DB.|
