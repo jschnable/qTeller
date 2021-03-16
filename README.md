@@ -22,7 +22,7 @@ Data types are optimized for single-genome RNA-seq data, single-genome RNA-seq a
 |------------------|:---------------------:|
 | [build_db](/build_db) | Scripts for constructing the SQLite DB.|
 | [web_interface](/web_interface) | Public facing files that are served by the Apache Server.|
-| [qteller_python2.7](/qteller_python2.7) | MaizeGDB Python 2.7 instance. This is the current public MaizeGDB qTeller instance.|
+| [qteller_python2.7](/qteller_python2.7) | MaizeGDB Python 2.7 instance.|
 
 
 
