@@ -11,7 +11,7 @@ For an examples of MaizeGDB's qTeller web interfaces visit
 | qTeller data types   | Description |
 |------------------|:---------------------:|
 | Genes in an Interval | Select a chromosome coordinate interval for a given genome to retrieve RNA/protein abundances.|
-| Genes by Name | Paste a list of gene models of interest to retrieve RNA/protein abundances.|
+| Genes by Name | Paste a list of gene models of interest to retrieve their RNA/protein abundances.|
 | Visualize Expression | Visualize RNA/protein abundances for a single gene, or compare abundances for two genes.|
 
 Data types are optimized for single-genome RNA-seq data, single-genome RNA-seq and protein abundance data, or multi-genome RNA-seq data.
