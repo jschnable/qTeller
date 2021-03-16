@@ -82,7 +82,7 @@ Assuming you have the required files, you can create the SQLite DB for single-ge
 
 ```
 $ cd build_db
-$ python multigenome_build_qt_db.py <METADATA.CSV> --bed_file <BED.bed> --info_dir ./<abundance? # creates userdb
+$ python multigenome_build_qt_db.py <METADATA.CSV> --bed_file <BED.bed> --info_dir ./<abundance> # creates userdb
 ```
 
 where <METADATA.CSV> is the CSV file (3), <GFF.gff3> is the GFF file (2), and abundance is the directory where the abundance files are kept (1) as described above. This will create a `userdb` SQLite file.
