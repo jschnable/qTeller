@@ -25,7 +25,6 @@ For username / password details, please contact [Carson Andorf](mailto:carson.an
 
 #### Python Version 3.6
 * See [requirements.txt](requirements.txt) and [python modules](python_modules.txt) for a list of dependencies.
-* **NOTE**: The host VM has Python 2.6.6 installed by default, and this should not be removed! See [Python](#python) for details.
 
 #### Apache Web Server Version 2.2.15
 * No untypical customization is needed.
