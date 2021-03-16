@@ -66,7 +66,7 @@ The qTeller database generation script requires the following 3 files:
       `$ mkdir build_db/abundance`
       * Drop your fpkm_tracking files in the **build_db/abundance** directory. They must end with either the **.fpkm_tracking** file extension from a Cufflinks output, or if you are submitting RNA-seq or protein abundances with only the gene model ID (column 1) and abundance data (column 2), the file extension should be **.txt** .
   2. GFF or bed file
-      * Download a GFF file for your desired genome and place it in the [build_db](/qteller/build_db) directory. Alternately, a bed file can be used, where the gene model ID is in column 4. A bed file is REQUIRED for multi-genome qTeller; the gene model ID is in column 4, and the genome ID is in column 5. Here is an [example] (qteller/build_db/multigenome_merged_IDs.bed).
+      * Download a GFF file for your desired genome and place it in the [build_db](/qteller/build_db) directory. Alternately, a bed file can be used, where the gene model ID is in column 4. A bed file is REQUIRED for multi-genome qTeller; the gene model ID is in column 4, and the genome ID is in column 5. Here is an [example](qteller/build_db/test_multigenome_NAM_merged_IDs.bed).
   3. CSV file
       * Create a metadata file in CSV format so the script knows how to interpret the fpkm_tracking files. Here is an [example](qteller/build_db/test_singlegenome_metadata.csv).
       * **NOTE:** The *File_handle* column specifies the name of the abundance file to load **(minus the .fpkm_tracking or .txt file extension)**
