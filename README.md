@@ -88,7 +88,7 @@ The qTeller database generation script requires the following 3 files:
       * Create a metadata file in CSV format so the script knows how to interpret the abundance files. Here is an [example](/build_db/test_singlegenome_metadata.csv).
       * **NOTE:** The *File_handle* column specifies the name of the abundance file to load **(minus the .fpkm_tracking or .txt file extension)**
     
-Assuming you have the required files, you can create the SQLite DB for single-genome and/or protein abundance data using the following command: 
+Assuming you have the required files, you can create the SQLite DB for RNA and/or protein abundance data using the following command: 
 
 ```
 $ cd build_db
