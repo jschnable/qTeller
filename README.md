@@ -1,7 +1,7 @@
 qTeller
 =======
 
-The MaizeGDB Python 3 version of James Schnable's RNA-seq processing pipeline and modular web interface
+The MaizeGDB Python 3 version of James Schnable's RNA-seq processing pipeline and modular web interface.
 
 For an examples of MaizeGDB's qTeller web interfaces visit 
 <a href="https://qteller.maizegdb.org/">https://qteller.maizegdb.org/</a>
