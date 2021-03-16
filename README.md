@@ -24,7 +24,7 @@ For username / password details, please contact [Carson Andorf](mailto:carson.an
 * No additional libraries required.
 
 #### Python Version 3.6
-* See [requirements.txt](requirements.txt) and [python modules](python_modules.txt) for a list of dependencies.
+* See [python3_requirements.txt](python3_requirements.txt) and [python modules](python_modules.txt) for a list of dependencies.
 
 #### Apache Web Server Version 2.4
 * No untypical customization is needed.
