@@ -92,7 +92,7 @@ Assuming you have the required files, you can create the SQLite DB for single-ge
 
 ```
 $ cd build_db
-$ python multigenome_build_qt_db.py <METADATA.CSV> --bed_file <BED.bed> --info_dir ./<ABUNDANCE> # creates userdb
+$ python multigenome_build_qt_db.py <METADATA.CSV> --bed_file <BED.bed> --info_dir ./<ABUNDANCE> --dbname userdb # creates userdb
 ```
 
 where <METADATA.CSV> is the CSV file (3), <GFF.gff3> is the GFF file (2), and <ABUNDANCE>  is the directory where the abundance files are kept (1) as described above. This will create a `userdb` SQLite file.
@@ -102,21 +102,21 @@ To build the SQLite DB for single-genome data (with no protein abundances) from 
 
 ```
 $ cd build_db
-$ python build_qt_db_gene_protein.py test_singlegenome_metadata.csv --gff_file Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1.gff3 --info_dir ./test_singlegenome_fpkm # creates singledb
+$ python build_qt_db_gene_protein.py test_singlegenome_metadata.csv --gff_file Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1.gff3 --info_dir ./test_singlegenome_fpkm --dbname singledb # creates singledb
 ```
 
 To build the SQLite DB for single-genome data with both RNA and protein abundances from the included test data, [download and uncompress this gff3 file](https://download.maizegdb.org/Zm-B73-REFERENCE-NAM-5.0/Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1.gff3.gz), move to build_db, then run this command:
 
 ```
 $ cd build_db
-$ python build_qt_db_gene_protein.py test_singlegenome_metadata.csv --gff_file Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1.gff3 --info_dir ./test_protein_abundance # creates proteindb
+$ python build_qt_db_gene_protein.py test_singlegenome_metadata.csv --gff_file Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1.gff3 --info_dir ./test_protein_abundance --dbname proteindb # creates proteindb
 ```
 
 To create the SQLite DB for multi-genome data from the included test data, run this command: 
 
 ```
 $ cd build_db
-$ python multigenome_build_qt_db.py test_multigenome_metadata.csv --bed_file test_multigenome_NAM_merged_IDs.bed --info_dir ./test_multigenome_fpkm # creates multidb
+$ python multigenome_build_qt_db.py test_multigenome_metadata.csv --bed_file test_multigenome_NAM_merged_IDs.bed --info_dir ./test_multigenome_fpkm --dbname multidb # creates multidb
 ```
 
 [To see more in-depth examples of file formatting, click here](File_and_php_code_examples.pdf).
