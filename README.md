@@ -15,8 +15,6 @@ For an examples of MaizeGDB's qTeller web interfaces visit
 | [qteller_python2.7](/qteller_python2.7) | MaizeGDB Python 2.7 instance. This is the current public MaizeGDB qTeller instance.|
 
 
-### Access
-For username / password details, please contact [Carson Andorf](mailto:carson.andorf@ars.usda.gov).
 
 ## Environment Requirements ##
 
