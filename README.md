@@ -26,7 +26,7 @@ For username / password details, please contact [Carson Andorf](mailto:carson.an
 #### Python Version 3.6
 * See [requirements.txt](requirements.txt) and [python modules](python_modules.txt) for a list of dependencies.
 
-#### Apache Web Server Version 2.2.15
+#### Apache Web Server Version 2.4
 * No untypical customization is needed.
 
 
@@ -39,10 +39,10 @@ See [an example](https://www.digitalocean.com/community/tutorials/how-to-install
 
 Centos 8 comes with Python 3, which includes PIP.
 
-To install [additional libraries](requirements.txt):
+To install [additional libraries](python3_requirements.txt):
 
 ```
-$ 'pip install -r requirements.txt'
+$ 'pip install -r python3_requirements.txt'
 ```
 
 
